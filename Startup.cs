@@ -28,7 +28,7 @@ namespace CashBank3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ClienteContext>(opt =>
-               opt.UseInMemoryDatabase("CashBank"));
+               opt.UseInMemoryDatabase("CashBank"));    //Produção: trocar para UseSqlServer(): REF2
             services.AddControllers();
         }
 

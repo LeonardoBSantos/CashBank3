@@ -1,6 +1,6 @@
 conexão com o banco
 
-Ref - https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio#add-a-model-class
+REF1 - https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio#add-a-model-class
 
 - adicionei a pasta models
 - adicionei a classe cliente
@@ -15,3 +15,5 @@ Ref - https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-web-api?view=
 
 ---------------||---------------------------
 
+Conectando com o banco de dados
+REF2 - https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/working-with-sql?view=aspnetcore-3.1&tabs=visual-studio
