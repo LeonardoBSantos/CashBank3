@@ -22,6 +22,7 @@ namespace CashBank3.Models
 
             modelBuilder.Entity<Carteira>().HasKey(p => p.id_carteira);
             modelBuilder.Entity<Carteira>().Property(p => p.fk_email_proprietario).IsRequired();
+            modelBuilder.Entity<Carteira>().HasIndex(p => p.fk_email_proprietario).IsUnique();
             modelBuilder.Entity<Carteira>().Property(p => p.id_carteira).ValueGeneratedOnAdd();
             modelBuilder.Entity<Carteira>().Property(p => p.saldo).HasDefaultValue(0);
             modelBuilder.Entity<Carteira>()
