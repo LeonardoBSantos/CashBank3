@@ -28,8 +28,9 @@ namespace CashBank3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ClienteContext>(opt =>
-               opt.UseInMemoryDatabase("CashBank"));    //Produção: trocar para UseSqlServer(): REF2
-            services.AddControllers();
+               opt.UseSqlServer(Configuration.GetConnectionString("ClienteContext")));    //Produção: trocar para UseSqlServer(): REF2
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

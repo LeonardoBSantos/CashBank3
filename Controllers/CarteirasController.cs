@@ -11,48 +11,48 @@ namespace CashBank3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientesController : ControllerBase
+    public class CarteirasController : ControllerBase
     {
         private readonly ClienteContext _context;
 
-        public ClientesController(ClienteContext context)
+        public CarteirasController(ClienteContext context)
         {
             _context = context;
         }
 
-        // GET: api/Clientes
+        // GET: api/Carteiras
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClienteItems()
+        public async Task<ActionResult<IEnumerable<Carteira>>> GetCarteiraItems()
         {
-            return await _context.ClienteItems.Include(x => x.Carteira).ToListAsync();
+            return await _context.CarteiraItems.Include(x => x.Cliente).ToListAsync();
         }
 
-        // GET: api/Clientes/5
+        // GET: api/Carteiras/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetCliente(string id)
+        public async Task<ActionResult<Carteira>> GetCarteira(string id)
         {
-            var cliente = await _context.ClienteItems.FindAsync(id);
+            var carteira = await _context.CarteiraItems.FindAsync(id);
 
-            if (cliente == null)
+            if (carteira == null)
             {
                 return NotFound();
             }
 
-            return cliente;
+            return carteira;
         }
 
-        // PUT: api/Clientes/5
+        // PUT: api/Carteiras/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(string id, Cliente cliente)
+        public async Task<IActionResult> PutCarteira(int id, Carteira carteira)
         {
-            if (id != cliente.email_proprietario)
+            if (id != carteira.id_carteira)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cliente).State = EntityState.Modified;
+            _context.Entry(carteira).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace CashBank3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClienteExists(id))
+                if (!CarteiraExists(id))
                 {
                     return NotFound();
                 }
@@ -77,16 +77,16 @@ namespace CashBank3.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
+        public async Task<ActionResult<Carteira>> PostCarteira(Carteira carteira)
         {
-            _context.ClienteItems.Add(cliente);
+            _context.CarteiraItems.Add(carteira);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (ClienteExists(cliente.email_proprietario))
+                if (CarteiraExists(carteira.id_carteira))
                 {
                     return Conflict();
                 }
@@ -96,28 +96,28 @@ namespace CashBank3.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCliente", new { id = cliente.email_proprietario }, cliente);
+            return CreatedAtAction("GetCarteira", new { id = carteira.id_carteira }, carteira);
         }
 
-        // DELETE: api/Clientes/5
+        // DELETE: api/Carteiras/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Cliente>> DeleteCliente(string id)
+        public async Task<ActionResult<Carteira>> DeleteCarteira(string id)
         {
-            var cliente = await _context.ClienteItems.FindAsync(id);
-            if (cliente == null)
+            var carteira = await _context.CarteiraItems.FindAsync(id);
+            if (carteira == null)
             {
                 return NotFound();
             }
 
-            _context.ClienteItems.Remove(cliente);
+            _context.CarteiraItems.Remove(carteira);
             await _context.SaveChangesAsync();
 
-            return cliente;
+            return carteira;
         }
 
-        private bool ClienteExists(string id)
+        private bool CarteiraExists(int id)
         {
-            return _context.ClienteItems.Any(e => e.email_proprietario == id);
+            return _context.CarteiraItems.Any(e => e.id_carteira == id);
         }
     }
 }

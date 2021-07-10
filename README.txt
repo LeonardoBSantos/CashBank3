@@ -17,3 +17,6 @@ REF1 - https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-web-api?view
 
 Conectando com o banco de dados
 REF2 - https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/working-with-sql?view=aspnetcore-3.1&tabs=visual-studio
+
+Adicionando o ef cli 
+REF3 - https://docs.microsoft.com/en-us/ef/core/cli/dotnet

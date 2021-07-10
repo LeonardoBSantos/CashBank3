@@ -8,6 +8,28 @@ namespace CashBank3.Models
             : base(options)
         {
         }
+
+        //Entidades
         public DbSet<Cliente> ClienteItems { get; set; }
+        public DbSet<Carteira> CarteiraItems { get; set; }
+
+        //configurações dos campos das entidades
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Cliente>().HasKey(p => p.email_proprietario);
+            modelBuilder.Entity<Cliente>().Property(p => p.email_proprietario).IsRequired();
+
+            modelBuilder.Entity<Carteira>().HasKey(p => p.id_carteira);
+            modelBuilder.Entity<Carteira>().Property(p => p.fk_email_proprietario).IsRequired();
+            modelBuilder.Entity<Carteira>().Property(p => p.id_carteira).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Carteira>().Property(p => p.saldo).HasDefaultValue(0);
+            modelBuilder.Entity<Carteira>()
+                .HasOne(p => p.Cliente)
+                .WithOne(p => p.Carteira)
+                .HasForeignKey<Carteira>(p => p.fk_email_proprietario);
+
+
+        }
     }
 }
