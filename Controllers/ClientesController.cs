@@ -28,10 +28,10 @@ namespace CashBank3.Controllers
         }
 
         // GET: api/Clientes/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetCliente(string id)
+        [HttpGet("{email_proprietario}")]
+        public async Task<ActionResult<Cliente>> GetCliente(string email_proprietario)
         {
-            var cliente = await _context.ClienteItems.FindAsync(id);
+            var cliente = await _context.ClienteItems.FindAsync(email_proprietario);
 
             if (cliente == null)
             {
@@ -43,11 +43,11 @@ namespace CashBank3.Controllers
 
         // PUT: api/Clientes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(string id, Cliente cliente)
+        // more details, see https://go.microsoft.com/fwlink/?linkemail_proprietario=2123754.
+        [HttpPut("{email_proprietario}")]
+        public async Task<IActionResult> PutCliente(string email_proprietario, Cliente cliente)
         {
-            if (id != cliente.email_proprietario)
+            if (email_proprietario != cliente.email_proprietario)
             {
                 return BadRequest();
             }
@@ -60,7 +60,7 @@ namespace CashBank3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClienteExists(id))
+                if (!ClienteExists(email_proprietario))
                 {
                     return NotFound();
                 }
@@ -75,7 +75,7 @@ namespace CashBank3.Controllers
 
         // POST:    
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // more details, see https://go.microsoft.com/fwlink/?linkemail_proprietario=2123754.
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
@@ -96,14 +96,14 @@ namespace CashBank3.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCliente", new { id = cliente.email_proprietario }, cliente);
+            return CreatedAtAction("GetCliente", new { email_proprietario = cliente.email_proprietario }, cliente);
         }
 
         // DELETE: api/Clientes/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Cliente>> DeleteCliente(string id)
+        [HttpDelete("{email_proprietario}")]
+        public async Task<ActionResult<Cliente>> DeleteCliente(string email_proprietario)
         {
-            var cliente = await _context.ClienteItems.FindAsync(id);
+            var cliente = await _context.ClienteItems.FindAsync(email_proprietario);
             if (cliente == null)
             {
                 return NotFound();
@@ -115,9 +115,9 @@ namespace CashBank3.Controllers
             return cliente;
         }
 
-        private bool ClienteExists(string id)
+        private bool ClienteExists(string email_proprietario)
         {
-            return _context.ClienteItems.Any(e => e.email_proprietario == id);
+            return _context.ClienteItems.Any(e => e.email_proprietario == email_proprietario);
         }
     }
 }

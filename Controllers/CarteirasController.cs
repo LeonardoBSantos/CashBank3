@@ -29,7 +29,7 @@ namespace CashBank3.Controllers
 
         // GET: api/Carteiras/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Carteira>> GetCarteira(string id)
+        public async Task<ActionResult<Carteira>> GetCarteira(int id)
         {
             var carteira = await _context.CarteiraItems.FindAsync(id);
 
@@ -44,34 +44,34 @@ namespace CashBank3.Controllers
         // PUT: api/Carteiras/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCarteira(int id, Carteira carteira)
-        {
-            if (id != carteira.id_carteira)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutCarteira(int id, Carteira carteira)
+        //{
+        //    if (id != carteira.id_carteira)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(carteira).State = EntityState.Modified;
+        //    _context.Entry(carteira).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CarteiraExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!CarteiraExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST:    
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -100,20 +100,20 @@ namespace CashBank3.Controllers
         }
 
         // DELETE: api/Carteiras/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Carteira>> DeleteCarteira(string id)
-        {
-            var carteira = await _context.CarteiraItems.FindAsync(id);
-            if (carteira == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Carteira>> DeleteCarteira(string id)
+        //{
+        //    var carteira = await _context.CarteiraItems.FindAsync(id);
+        //    if (carteira == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.CarteiraItems.Remove(carteira);
-            await _context.SaveChangesAsync();
+        //    _context.CarteiraItems.Remove(carteira);
+        //    await _context.SaveChangesAsync();
 
-            return carteira;
-        }
+        //    return carteira;
+        //}
 
         private bool CarteiraExists(int id)
         {
