@@ -68,7 +68,9 @@ Criando a entidade transação
 1) criar o modelo da tabela transação
 2) fazer o relacionamento 1 para muitos com a tabela carteira (campo id_carteira) - não declarando esse campo da tabela transação como unico 
 3) gerar o controller 
-4) fazer um update na tabela carteira com uma subquery que trás o valor da tabela transação
+4) fazer um trigger para atualizar o valor do saldo na tabela carteira após a inserção de uma transação
+	testar o trigger no sql 
+	adicionar a migration
 5) o update não pode deixar a tabela negativa
 
 Ref - https://pt.stackoverflow.com/questions/310703/update-utilizando-valores-contidos-em-outra-tabela
