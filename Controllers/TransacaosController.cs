@@ -28,10 +28,10 @@ namespace CashBank3.Controllers
         }
 
         // GET: api/Transacaos/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Transacao>> GetTransacao(int id)
+        [HttpGet("{fk_id_carteira}")]
+        public async Task<ActionResult<List<Transacao>>> GetTransacao(int fk_id_carteira)
         {
-            var transacao = await _context.Transacao.FindAsync(id);
+            var transacao = await _context.Transacao.Where(e => e.fk_id_carteira == fk_id_carteira).ToListAsync();
 
             if (transacao == null)
             {
