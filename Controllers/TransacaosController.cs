@@ -41,41 +41,50 @@ namespace CashBank3.Controllers
             return transacao;
         }
 
-        // PUT: api/Transacaos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTransacao(int id, Transacao transacao)
-        {
-            if (id != transacao.id)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Transacaos/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutTransacao(int id, Transacao transacao)
+        //{
+        //    if (id != transacao.id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(transacao).State = EntityState.Modified;
+        //    _context.Entry(transacao).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TransacaoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!TransacaoExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Transacaos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Transacao>> PostTransacao(Transacao transacao)
+        {
+            _context.Transacao.Add(transacao);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetTransacao", new { id = transacao.id }, transacao);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<Transacao>> DeleteTransacao(Transacao transacao)
         {
             _context.Transacao.Add(transacao);
             await _context.SaveChangesAsync();
@@ -93,7 +102,7 @@ namespace CashBank3.Controllers
                 return NotFound();
             }
 
-            _context.Transacao.Remove(transacao);
+            _context.Transacao.Add(transacao);
             await _context.SaveChangesAsync();
 
             return NoContent();

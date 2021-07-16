@@ -99,21 +99,21 @@ namespace CashBank3.Controllers
             return CreatedAtAction("GetCliente", new { email_proprietario = cliente.email_proprietario }, cliente);
         }
 
-        // DELETE: api/Clientes/5
-        [HttpDelete("{email_proprietario}")]
-        public async Task<ActionResult<Cliente>> DeleteCliente(string email_proprietario)
-        {
-            var cliente = await _context.ClienteItems.FindAsync(email_proprietario);
-            if (cliente == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Clientes/5
+        //[HttpDelete("{email_proprietario}")]
+        //public async Task<ActionResult<Cliente>> DeleteCliente(string email_proprietario)
+        //{
+        //    var cliente = await _context.ClienteItems.FindAsync(email_proprietario);
+        //    if (cliente == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.ClienteItems.Remove(cliente);
-            await _context.SaveChangesAsync();
+        //    _context.ClienteItems.Remove(cliente);
+        //    await _context.SaveChangesAsync();
 
-            return cliente;
-        }
+        //    return cliente;
+        //}
 
         private bool ClienteExists(string email_proprietario)
         {
