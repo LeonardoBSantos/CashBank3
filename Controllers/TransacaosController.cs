@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CashBank3.Models;
@@ -20,14 +18,12 @@ namespace CashBank3.Controllers
             _context = context;
         }
 
-        // GET: api/Transacaos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Transacao>>> GetTransacao()
         {
             return await _context.Transacao.ToListAsync();
         }
 
-        // GET: api/Transacaos/5
         [HttpGet("{fk_id_carteira}")]
         public async Task<ActionResult<List<Transacao>>> GetTransacao(int fk_id_carteira)
         {
@@ -41,39 +37,6 @@ namespace CashBank3.Controllers
             return transacao;
         }
 
-        //// PUT: api/Transacaos/5
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutTransacao(int id, Transacao transacao)
-        //{
-        //    if (id != transacao.id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(transacao).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!TransacaoExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        // POST: api/Transacaos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Transacao>> PostTransacao(Transacao transacao)
         {
@@ -92,7 +55,6 @@ namespace CashBank3.Controllers
             return CreatedAtAction("GetTransacao", new { id = transacao.id }, transacao);
         }
 
-        // DELETE: api/Transacaos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTransacao(int id)
         {

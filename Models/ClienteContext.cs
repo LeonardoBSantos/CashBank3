@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CashBank3.Models;
 
 namespace CashBank3.Models
 {
@@ -10,12 +9,10 @@ namespace CashBank3.Models
         {
         }
 
-        //Entidades
         public DbSet<Cliente> ClienteItems { get; set; }
         public DbSet<Carteira> CarteiraItems { get; set; }
         public DbSet<Carteira> TransacaoItems { get; set; }
 
-        //configurações dos campos das entidades
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -37,7 +34,6 @@ namespace CashBank3.Models
                 .WithMany(p => p.Transacao);
         }
 
-        //configurações dos campos das entidades
         public DbSet<CashBank3.Models.Transacao> Transacao { get; set; }
     }
 }
