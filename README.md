@@ -107,7 +107,7 @@ Com a carteira cadastrada, depositamos e sacamos valores dela através da URL: h
 }
 ```
 
-<img src="img/7.png" alt="Tela"/>
+<img src="img/7.PNG" alt="Tela"/>
 
 Para sacar valores da carteira, usamos a mesma rota. Entretanto, devemos alternar para o verbo DELETE. Exemplo de um saque:
 
@@ -118,7 +118,7 @@ Para sacar valores da carteira, usamos a mesma rota. Entretanto, devemos alterna
   "valor":"50"
 }
 ```
-<img src="img/9.png" alt="Tela"/>
+<img src="img/9.PNG" alt="Tela"/>
 
 **OBS: O valor do campo tipo_operacao deve ser "Saque" (para sacar) e "Depósito" (para depositar).**  
 
@@ -128,4 +128,4 @@ Para listar todas as transações feitas pelo CASHBANK selecionamos o verbo GET 
 
 Para listar todas as transações feitas por uma determinada carteira usamos a URL: https://localhost:5001/api/Transacaos/id_da_carteira_do_cliente.
 
-<img src="img/10.png" alt="Tela"/>
+<img src="img/10.PNG" alt="Tela"/>
