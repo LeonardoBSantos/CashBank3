@@ -60,7 +60,6 @@ BEGIN
 END
 GO
 ```
-# Gerenciando uma carteira
 
 # Cadastrando um cliente
 
